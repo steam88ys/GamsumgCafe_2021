@@ -1,0 +1,295 @@
+/* 전체 레이아웃 => 디자인 */
+/* 대표적인 태그 => 공통된 css적용=> 표준화된 css  */
+/* 에릭마이어의 CSS표준화  */
+@charset "utf-8";
+@import url(https://cdn.rawgit.com/theeluwin/NotoSansKR-Hestia/master/stylesheets/NotoSansKR-Hestia.css);
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p,
+blockquote, pre, a, button, abbr, acronym, address, code, del, 
+dfn, em, img, strong, sub, sup, dl, dt, dd, ol, ul, li, fieldset, 
+form, label, legend, table, caption, tbody, tfoot, thead, tr, th, 
+td, hr{margin:0;padding:0;font-size:100%;box-sizing: border-box;}
+
+body{height:100%;min-height:100%;font-family:'Noto Sans Korean','Malgun Gothic','맑은고딕','돋움',dotum, sans-serif;font-size:16px;color:#737373;line-height:1.5;background:url(../images/content_bg4.png) repeat;}
+h1, h2, h3, h4, h5, h6 {font-weight:normal}
+ol, ul, li {list-style:none}
+table {width:100%; border-collapse:collapse;border-spacing:0}
+form, fieldset, iframe {display:block;border:0}
+img, button {border:0 none;vertical-align:top;}
+hr {height:0; display:none}
+i, em, address{font-style:normal}
+label, button{cursor:pointer}
+blockquote, q {quotes:none}
+caption, legend {overflow:hidden;visibility:hidden;position:absolute;width:0;height:0;padding:0;margin:0;font-size:0;text-indent:-100%;white-space:nowrap;z-index:-1}
+
+header, footer, section, article, aside, nav, hgroup, details, menu, figure, figcaption {display:block;box-sizing: border-box;}
+input, textarea, select, button {font-family:'Noto Sans Korean','Malgun Gothic','맑은고딕','돋움',dotum, sans-serif;font-size:16px;color:#919090;line-height:1.5;letter-spacing:0;vertical-align:middle; border:none;}
+input, textarea {margin:0;padding:0;  background:none; box-sizing:border-box;}
+textarea {resize:none}
+a {color:#919090;text-decoration:none}
+a:link, a:visited {text-decoration:none}
+a:hover {text-decoration:none}
+.blind{display: none;overflow: hidden;position: absolute;width: 0;height: 0;padding: 0;margin: 0; font-size: 0;line-height: 0; text-indent: -9999em;visibility: hidden;outline: none;z-index: -1;}
+html,body{overflow:hidden;height:100%;}
+
+/* 공통 CSS 끝 */
+
+
+/* 레이아웃 설정 */
+#wrap {  /* 전체 컨테이너 */
+    width: 100%;
+    height: 100%;
+    padding-right: 180px; /* 오른쪽 메뉴 사이즈 */
+}
+#wrap > h1 {  /* 제목 가리기 */
+    font-size:0;
+} 
+header .logo_box {
+    position: absolute;
+    right: -45px;
+    top: -5px;
+}
+
+#wrap header {
+    width: 180px;
+    height: 100%;
+    position: fixed;
+    right: 0px;
+    top: 0px;
+    background : url(../images/menu_bg1.jpg) repeat-y;  /* . 현재 ..부모 */
+    z-index: 10;
+}
+#wrap header nav {
+    width: 100%;
+    height: 100%;
+}
+
+#wrap header nav ul {
+    width: 100%;
+    height: 100%;
+    display: flex; /* 정렬 기능 */
+    flex-direction: column; /* 수직 중앙정렬 */
+    justify-content: center;
+}
+
+#wrap header nav ul li{
+    margin: 0px 0px 15px 30px;
+    padding-left: 25px;
+    position: relative;
+}
+
+#wrap header nav ul li a {
+    font-size: 20px;
+    color: white;
+    font-weight: 500;
+    line-height: 20px;
+}
+/* 가상요소 => html을 변화시키지 않고도 디자인만으로 효과 => 가상으로 글머리표
+    after, before */
+#wrap header nav ul li:after{
+    content: ""; /* 필수 */
+    display: block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: white;
+    position: absolute;
+    left: 0px;
+    top: 11px;
+}
+#wrap header nav ul li:hover a{
+    color: rgb(241, 253, 77);
+}
+#wrap header nav ul li:hover:after {
+    background-color: rgb(241, 253, 77);
+}
+footer {
+    width: 180px;
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    padding: 0px 20px 30px 20px;
+    font-size: 11px;
+    color: rgb(255, 255, 255, 0.89);
+    z-index: 12;
+}
+
+#container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    max-width: 1200px;
+    margin: auto;
+}
+#container .content {
+    width: 25%;
+    height: 100%;
+    position: absolute;
+    transition: all .5s;
+}
+/* 슬라이드 */
+#container .content.this{
+    width:100%; 
+    left:0 !important;
+}
+#container .content.prev{
+    width:100%; 
+    left:-100% !important;
+}
+#container .content.next{
+    width:100%; 
+    left:100% !important;
+}
+/* 이전요소 모두 가리기 */
+#container .content.this::before, #container .content.this::after,
+#container .content.this .conbox:before{
+    opacity: 0;
+}
+
+
+#container #menu1 {
+    left: 0%;
+    background: url(../images/back.png) no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+#container #menu2 {
+    left: 25%;
+    background: url(../images/back.png) no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+#container #menu3 {
+    left: 50%;
+    background: url(../images/back.png) no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+#container #menu4 {
+    left: 75%;
+    background: url(../images/back.png) no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+/* 가상요소 영역 만들기 */
+#container .content:before,#container .content:after{
+    content:""; 
+    display:block;
+    position:absolute;
+}
+#container .content:before {
+    width: 1px;
+    height: 100%;
+    background-color: black;
+    left: 0px;
+    top: 0px;
+    z-index: 4;
+}
+
+/* 6/10 각 메뉴의 영역에 대한 디자인 */
+#container .content .conbox:before{
+    content:""; 
+    display:block; 
+    position:absolute;
+}
+
+ #container #menu1 .conbox:before{
+    background:url(../images/GS1.jpeg) no-repeat;
+    width:350px; 
+    height: 300px;; 
+    right:-50px; 
+    top:100px; 
+    background-size:100%;
+}
+
+#container #menu2 .conbox:before{
+    background:url(../images/GS4.jpg) no-repeat;
+    width:350px; 
+    height: 300px;; 
+    right:-50px; 
+    top:100px; 
+    background-size:100%;
+}
+
+#container #menu3 .conbox:before{
+    background:url(../images/GS5.jpeg) no-repeat;
+    width:350px; 
+    height: 300px;; 
+    right:-50px; 
+    top:100px; 
+    background-size:100%;
+}
+
+#container #menu4 .conbox:before{
+    background:url(../images/GS7.jpeg) no-repeat;
+    width:300px; 
+    height: 300px;; 
+    right:0px; 
+    top:100px; 
+    background-size:100%;
+}
+
+#container .content h2{ /*영역 상단의 글자 감추기 */
+    opacity:0;
+}
+
+#container .content.this h2{ /*각페이지의 메뉴제목 스타일*/
+    height:auto; 
+    padding:30px 0 20px 50px; 
+    color:#000; 
+    position:relative; 
+    background:#fff; 
+    font-size:28px; 
+    font-weight:400;
+    opacity: 1;
+}
+#container .content.this h2:after{
+    content:""; 
+    width:100%; 
+    height:8px; 
+    background:#575656; 
+    position:absolute; 
+    left:0; 
+    bottom:0;
+}
+
+/* 각 메뉴의 실제 내용*/
+#container .content .conbox .content_wrap{
+    opacity:0;
+}
+#container .content.this .conbox .content_wrap{
+    padding:30px 50px 50px 50px; 
+    opacity:1;
+}
+
+
+.para_title{
+    margin-bottom:50px; 
+    font-size:30px; 
+    color:#fff; 
+    position:relative;
+}
+.para_title::after{
+    content:""; 
+    display:block; 
+    width:30px; 
+    height:8px; 
+    background:rgb(136, 131, 131); 
+    position:absolute; 
+    left:0; 
+    bottom:-10px;
+}
+
+.text_box h4{
+    font-size:25px; 
+    color:white; 
+    font-weight:700;
+}
+.text_box p{
+    margin-bottom:50px; 
+    color:#ababab; 
+    line-height:20px;
+}
